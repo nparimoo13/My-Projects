@@ -1,26 +1,73 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #282c34;
+    color: #61dafb;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 header {
-    background-color: #333;
+    background: linear-gradient(135deg, #282c34, #61dafb);
     color: white;
     text-align: center;
     padding: 2rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, transparent 20%, rgba(255, 255, 255, 0.1) 21%);
+    animation: rotate 15s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 header h1 {
     margin: 0;
     font-size: 2.5rem;
+    animation: fadeInDown 1s ease-out;
 }
 
 header p {
     margin: 0.5rem 0 0;
     font-size: 1.25rem;
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .projects {
@@ -31,47 +78,104 @@ header p {
 }
 
 .project {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #20232a;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     margin: 1rem;
     padding: 1.5rem;
     width: 300px;
     text-align: center;
+    transform: translateY(30px);
+    opacity: 0;
+    animation: slideIn 0.8s ease forwards;
+    animation-delay: calc(0.3s * var(--delay));
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .project h2 {
     font-size: 1.5rem;
-    color: #333;
+    color: #61dafb;
     margin-bottom: 0.5rem;
+    position: relative;
 }
 
 .project p {
     font-size: 1rem;
-    color: #666;
+    color: #a1a1a1;
     margin-bottom: 1rem;
 }
 
 .project a {
     display: inline-block;
-    background-color: #333;
-    color: white;
+    background-color: #61dafb;
+    color: #20232a;
     padding: 0.5rem 1rem;
     border-radius: 4px;
     text-decoration: none;
-    transition: background-color 0.3s;
+    transition: transform 0.3s, background-color 0.3s;
+    position: relative;
+}
+
+.project a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 10%, transparent 11%);
+    background-size: 200% 200%;
+    animation: moveGlow 2s linear infinite;
+    border-radius: 4px;
+}
+
+@keyframes moveGlow {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
 }
 
 .project a:hover {
-    background-color: #555;
+    transform: scale(1.05);
+    background-color: #fff;
+    color: #61dafb;
 }
 
 footer {
     text-align: center;
-    background-color: #333;
-    color: white;
+    background-color: #20232a;
+    color: #61dafb;
     padding: 1rem 0;
     position: relative;
     bottom: 0;
     width: 100%;
+    margin-top: 2rem;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+    animation: fadeIn 2s ease-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
